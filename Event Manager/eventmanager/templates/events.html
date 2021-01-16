@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+
+
+{% block titleblock %}
+Events Page
+{% endblock titleblock %}
+
+{% block bodyblock %}
+<style>
+    table,
+    th,
+    td {
+        margin: 5px;
+        padding: 10px 5px;
+        border: 1px solid black;
+    }
+</style>
+<div class="container-fluid">
+    <h1>Events Page
+    </h1>
+
+
+    <table>
+        <tr>
+            <th>Event Name</th>
+            <th>Description</th>
+            <th>Poster Link</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Registration Deadline</th>
+            <th>Host Email ID</th>
+        </tr>
+        {% for i in contexts %}
+        <tr>
+            <td>
+
+                {{i.eventName}}
+            </td>
+            <td>{{i.desc}}</td>
+            <td>{{i.posterLink}}</td>
+            <td>
+                {{i.eventFrom}}
+
+            </td>
+
+            <td>
+
+                {{i.eventTo}}
+
+            </td>
+            <td>
+                {{i.eventDeadline}}
+            </td>
+            <td>
+                {{i.hostID}}
+
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+
+</div>
+{% endblock bodyblock %}
