@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block titleblock %} Participant Registration
+{%endblock titleblock %}
+
+{% block styleCSS %}
+
+<style>
+  * {
+    color: black;
+  }
+
+  .formClass {
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 20%;
+    /* width: 60vw;
+      height: 80vh; */
+    border: 2px solid black;
+    /* background-color: rgb(216, 151, 241); */
+    background-color: rgb(145, 207, 126);
+    background: url('../static/book.jpeg') no-repeat;
+    background-size: 100% 100%;
+    /* image */
+    /* background-color: #7FDBFF; */
+    /* border-radius: 25px; */
+
+  }
+
+  div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  #heading {
+    text-align: center;
+  }
+
+  .addBtn {
+
+    margin-bottom: 1%;
+  }
+</style>
+
+{% endblock styleCSS %} {% block bodyblock %}
+
+<div class="container-fluid formClass">
+  <h1 id="heading">Participant Registration</h1>
+  <form method="POST" action="/participantRegistration/">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleInputEmail1">Participant Name</label>
+      <input type="text" class="form-control" id="Name" name="name" aria-describedby="emailHelp" />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Contact Number</label>
+      <input type="phone" class="form-control" id="Name" name="contact" aria-describedby="emailHelp" />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email ID</label>
+      <input type="email" class="form-control" id="link" name="emailID" aria-describedby="emailHelp" />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Event List</label>
+      <select class="form-select" name="eventList" aria-label="Default select example">
+        <option value=""></option>
+        {% for name in names %}
+
+        <option>
+          <h1>{{ name }}</h1>
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Registration Type</label>
+      <select class="form-select" id="registrationType" name="registrationType" aria-label="Default select example">
+        <option value=""></option>
+        <option>Individual</option>
+        <option value="1">Group</option>
+      </select>
+    </div>
+    <div class="form-group" id="noOfPeople">
+      <label for="exampleInputEmail1"> No of People</label>
+      <input type="text" class="form-control" name="noOfPeople" id="inp" aria-describedby="emailHelp" />
+    </div>
+    <button type="submit" class="btn btn-primary addBtn">Submit</button>
+  </form>
+</div>
+
+<script>
+  const registrationType = document.getElementById("registrationType");
+  const noOfPeople = document.getElementById("noOfPeople");
+  const inp = document.getElementById("inp");
+
+  registrationType.addEventListener(
+    "change",
+    function singleSelectChangeValue() {
+      let selObj = document.getElementById("registrationType");
+      let selValue = selObj.options[selObj.selectedIndex].text;
+
+      if (selValue == "Individual") {
+        noOfPeople.style.display = "none";
+        inp.defaultValue = 1;
+      } else {
+        noOfPeople.style.display = "block";
+      }
+    }
+  );
+</script>
+
+{% endblock bodyblock %}
