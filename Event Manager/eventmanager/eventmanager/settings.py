@@ -28,6 +28,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+TWILIO_NUMBER = os.getenv("TWILIO_NUMBER")
+SMS_BROADCAST_TO_NUMBERS = [
+    "+916354443599"  # use the format +19735551234
+]
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -131,3 +139,14 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = "Coder@2020"
+
+# Django SECRET_KEY for sessions
+SECRET_KEY = 'development key'  # change this to a secret string when deploying
+
+# Twilio credentials and phone number
+# obtained from twilio.com/console
+TWILIO_ACCOUNT_SID = 'AC7ac254934be06a1c90a0b9db94bc33ed'
+# also obtained from twilio.com/console
+TWILIO_AUTH_TOKEN = '56c307f6f749a955c32752f1a851ecee'
+# use the number you received when signing up or buy a new number
+TWILIO_NUMBER = '+18647131336'
